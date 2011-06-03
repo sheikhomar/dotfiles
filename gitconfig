@@ -1,0 +1,14 @@
+[user]
+	name = Omar Ali Sheikh
+	email = sheikhomar@gmail.com
+[push]
+	default = tracking
+[branch]
+	autosetuprebase = always
+[alias]
+	co = checkout
+	st = status -s
+	br = branch
+	ci = commit
+	up = pull --rebase
+	qlog = whatchanged --oneline --decorate --color
