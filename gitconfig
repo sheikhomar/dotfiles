@@ -12,3 +12,8 @@
 	ci = commit
 	up = pull --rebase
 	qlog = whatchanged --oneline --decorate --color
+	log = log --color=auto
+[color]
+	status = auto
+	branch = auto
+	diff = auto
