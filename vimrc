@@ -62,18 +62,18 @@ nnoremap / /\v
 vnoremap / /\v
 
 " Disable arrow keys
-nnoremap <Left> <nop>
-nnoremap <Right> <nop>
-nnoremap <Up> <nop>
-nnoremap <Down> <nop>
-vnoremap <Left> <nop>
-vnoremap <Right> <nop>
-vnoremap <Up> <nop>
-vnoremap <Down> <nop>
-inoremap <Left> <nop>
-inoremap <Right> <nop>
-inoremap <Up> <nop>
-inoremap <Down> <nop>
+"nnoremap <Left> <nop>
+"nnoremap <Right> <nop>
+"nnoremap <Up> <nop>
+"nnoremap <Down> <nop>
+"vnoremap <Left> <nop>
+"vnoremap <Right> <nop>
+"vnoremap <Up> <nop>
+"vnoremap <Down> <nop>
+"inoremap <Left> <nop>
+"inoremap <Right> <nop>
+"inoremap <Up> <nop>
+"inoremap <Down> <nop>
 
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
