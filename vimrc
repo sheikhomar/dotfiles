@@ -85,6 +85,10 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+noremap <silent> <C-S> :update<cr>
+vnoremap <silent> <C-S> <C-C>:update<cr>
+inoremap <silent> <C-S> <C-O>:update<cr>
+
 " Map key to hide search highlighting
 nnoremap <leader><space> :nohl<cr>
 
