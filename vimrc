@@ -11,6 +11,11 @@ let mapleader = ","
 command! W :w
 command! Q :q
 
+set noerrorbells visualbell t_vb= " Disable beeps
+if has('autocmd')
+  autocmd GUIEnter * set visualbell t_vb= " Disable background flash
+endif
+
 set showcmd                       " Display incomplete commands.
 set showmode                      " Display the mode you're in.
 
