@@ -32,7 +32,7 @@ function parse_git_branch {
 }
 
 export PS1='\[\033[0;32m\]\w\[\033[0m\]$(parse_git_branch)$ '
-export TERM='xterm-256color'
+export TERM=rxvt
 
 
 # Environment
