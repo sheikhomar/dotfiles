@@ -85,6 +85,11 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+noremap <C-up> :tabr<cr>
+noremap <C-down> :tabl<cr>
+noremap <C-left> :tabp<cr>
+noremap <C-right> :tabn<cr>
+
 noremap <silent> <C-S> :update<cr>
 vnoremap <silent> <C-S> <C-C>:update<cr>
 inoremap <silent> <C-S> <C-O>:update<cr>
@@ -94,3 +99,8 @@ nnoremap <leader><space> :nohl<cr>
 
 " Strip all trailing whitespace in the current file
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<cr>
+
+
+if has("gui_running")
+  set guioptions-=T                 " Remove toolbar
+end
