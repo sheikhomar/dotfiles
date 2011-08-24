@@ -85,10 +85,16 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-noremap <C-up> :tabr<cr>
-noremap <C-down> :tabl<cr>
-noremap <C-left> :tabp<cr>
-noremap <C-right> :tabn<cr>
+nmap <C-S-tab> :tabprevious<cr>
+nmap <C-tab> :tabnext<cr>
+map <C-S-tab> :tabprevious<cr>
+map <C-tab> :tabnext<cr>
+imap <C-S-tab> <Esc>:tabprevious<cr>i
+imap <C-tab> <Esc>:tabnext<cr>i
+nmap <C-t> :tabnew<cr>
+imap <C-t> <Esc>:tabnew<cr>
+nmap <C-w> :close<cr>
+imap <C-w> <Esc>:close<cr>
 
 noremap <silent> <C-S> :update<cr>
 vnoremap <silent> <C-S> <C-C>:update<cr>
