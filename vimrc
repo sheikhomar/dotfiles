@@ -45,14 +45,12 @@ set visualbell                    " No beeping.
 
 set history=1000                  " Increase commands and search history
 set undolevels=1000               " Increase undos
-if v:version >= 730
-  set undofile                    " Persistent undo file
-  set undodir=~/.vim/.undo,~/tmp,/tmp
-endif
+set undofile                      " Persistent undo file
+set undodir=~/.vim/tmp/undo,~/tmp,/tmp
 
 set nobackup                      " Don't make a backup before overwriting a file.
 set nowritebackup                 " And again.
-set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
+set directory=~/.vim/tmp/swap//,.  " Keep swap files in one location
 
 set tabstop=2                    " Width of the <tab>
 set expandtab                    " Use spaces instead of tabs
