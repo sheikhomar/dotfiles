@@ -91,8 +91,6 @@ imap <C-S-tab> <Esc>:tabprevious<cr>i
 imap <C-tab> <Esc>:tabnext<cr>i
 nmap <C-t> :tabnew<cr>
 imap <C-t> <Esc>:tabnew<cr>
-nmap <C-w> :close<cr>
-imap <C-w> <Esc>:close<cr>
 
 noremap <silent> <C-S> :update<cr>
 vnoremap <silent> <C-S> <C-C>:update<cr>
