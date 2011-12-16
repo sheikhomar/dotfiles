@@ -34,3 +34,5 @@ setopt NO_BEEP
 
 export PROMPT=$'%{\e[0;35m%}%m:%{\e[0;37m%}%~%(!.#.$) %{\e[00m%}'
 export EDITOR='vim'
+export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
+export PATH=$PATH:~/android-sdk/tools:~/android-sdk/platform-tools
