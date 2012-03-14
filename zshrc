@@ -1,4 +1,5 @@
 source "$HOME/.rvm/scripts/rvm"
+source "$HOME/.zsh/git-prompt/zshrc.sh"
 
 stty -ixon
  
@@ -32,7 +33,8 @@ setopt AUTO_CONTINUE
 # Disable beeps.
 setopt NO_BEEP
 
-export PROMPT=$'%{\e[0;35m%}%m:%{\e[0;37m%}%~%(!.#.$) %{\e[00m%}'
+#export PROMPT='%B%m%~%b$(git_super_status) %# '
+export PROMPT=$'%{\e[0;35m%}%m:%{\e[0;37m%}%~%(!.#.$) %{\e[00m%}$(git_super_status)'
 export EDITOR='vim'
 export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
 export PATH=$PATH:~/android-sdk/tools:~/android-sdk/platform-tools
