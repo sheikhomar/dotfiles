@@ -14,7 +14,7 @@ endif
 
 hi Normal ctermbg=236 ctermfg=white guibg=#303030 guifg=#ffffff
 hi CursorLine cterm=none ctermbg=234 gui=none guibg=#1c1c1c
-hi IncSearch cterm=underline ctermfg=red ctermbg=235 gui=underline guifg=red guibg=green
+hi IncSearch cterm=none ctermfg=black ctermbg=235 gui=none guifg=black guibg=#e7ff10
 hi LineNr cterm=none ctermbg=234 ctermfg=darkgrey guibg=#1c1c1c guifg=#6c6c6c
 hi Search cterm=none ctermfg=black ctermbg=220 gui=none guifg=#000000
 hi StatusLine ctermbg=237 ctermfg=255 guibg=#3a3a3a guifg=#eeeeee
