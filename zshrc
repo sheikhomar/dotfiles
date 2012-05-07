@@ -14,6 +14,7 @@ setopt EXTENDED_HISTORY # add timestamps to history
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_REDUCE_BLANKS
 setopt SHARE_HISTORY
+setopt HIST_IGNORE_SPACE # don't save history if command begin with a blank
 
 setopt NO_BG_NICE # don't nice background tasks
 setopt NO_HUP
