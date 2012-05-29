@@ -39,3 +39,5 @@ export PROMPT=$'%{\e[0;35m%}%m:%{\e[0;37m%}%~%(!.#.$) %{\e[00m%}$(git_super_stat
 export EDITOR='vim'
 export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
 export PATH=$PATH:~/android-sdk/tools:~/android-sdk/platform-tools
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
