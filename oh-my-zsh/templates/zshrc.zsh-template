@@ -1,6 +1,15 @@
+# Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="gentoo"
-COMPLETION_WAITING_DOTS="true"
+
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+ZSH_THEME="robbyrussell"
+
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -20,6 +29,8 @@ COMPLETION_WAITING_DOTS="true"
 # Uncomment following line if you want to disable command autocorrection
 # DISABLE_CORRECTION="true"
 
+# Uncomment following line if you want red dots to be displayed while waiting for completion
+# COMPLETION_WAITING_DOTS="true"
 
 # Uncomment following line if you want to disable marking untracked files under
 # VCS as dirty. This makes repository status check for large repositories much,
@@ -34,34 +45,3 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-
-[[ -s "$HOME/.zprofile" ]] && source "$HOME/.zprofile"
-
-stty -ixon
- 
-# History settings
-export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd:cd ..:cd.."
-export HISTFILE=~/.zsh_history
-export HISTSIZE=5000
-export SAVEHIST=5000
-setopt APPEND_HISTORY
-setopt INC_APPEND_HISTORY
-setopt EXTENDED_HISTORY # add timestamps to history
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_REDUCE_BLANKS
-setopt SHARE_HISTORY
-setopt HIST_IGNORE_SPACE # don't save history if command begin with a blank
-
-setopt NO_BG_NICE # don't nice background tasks
-setopt NO_HUP
-setopt NO_LIST_BEEP
-setopt LOCAL_OPTIONS # allow functions to have local options
-setopt LOCAL_TRAPS # allow functions to have local traps
-setopt PROMPT_SUBST
-setopt CORRECT
-setopt COMPLETE_IN_WORD
-setopt RM_STAR_WAIT # Wait a few seconds before deleting everything.
-setopt AUTO_CONTINUE # Please don't kill background processes on Ctrl-D.
-setopt NO_BEEP # Disable beeps.
-export EDITOR='vim'
-
