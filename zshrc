@@ -65,3 +65,4 @@ setopt AUTO_CONTINUE # Please don't kill background processes on Ctrl-D.
 setopt NO_BEEP # Disable beeps.
 export EDITOR='vim'
 
+alias g='nocorrect git'
