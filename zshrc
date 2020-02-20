@@ -37,6 +37,10 @@ source $ZSH/oh-my-zsh.sh
 
 [[ -s "$HOME/.zprofile" ]] && source "$HOME/.zprofile"
 
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+  source /etc/profile.d/vte.sh
+fi
+
 stty -ixon
  
 # History settings
