@@ -21,4 +21,6 @@ for file in ${files[@]}; do
     ln -nfs $SRC_DIR/${file} $HOME/.${file}
 done
 
+touch $HOME/.zprofile
+
 echo Done. Log file: $LOG_FILE
