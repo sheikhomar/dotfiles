@@ -5,7 +5,7 @@
 # the extent permitted by applicable law. You can redistribute it
 # and/or modify it under the terms of the Do What The Fuck You Want
 # To Public License, Version 2, as published by Sam Hocevar. See
-# http://sam.zoy.org/wtfpl/COPYING for more details.
+# http://www.wtfpl.net/txt/copying/ for more details.
 
 THEMES_DIR="$ZSH/themes"
 FAVLIST="${HOME}/.zsh_favlist"
@@ -24,7 +24,8 @@ function theme_preview() {
     THEME_NAME=`echo $THEME | sed s/\.zsh-theme$//`
     print "$fg[blue]${(l.((${COLUMNS}-${#THEME_NAME}-5))..─.)}$reset_color $THEME_NAME $fg[blue]───$reset_color"
     source "$THEMES_DIR/$THEME"
-    print -P $PROMPT
+    cols=$(tput cols)
+    print -P "$PROMPT                                                                                      $RPROMPT"
 }
 
 function banner() {

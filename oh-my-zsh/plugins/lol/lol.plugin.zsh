@@ -1,5 +1,5 @@
 # LOL!!1
-# Source: http://aur.archlinux.org/packages/lolbash/lolbash/lolbash.sh
+# Source: https://aur.archlinux.org/packages/lolbash/lolbash/lolbash.sh
 
 alias wtf='dmesg'
 alias onoz='cat /var/log/errors.log'
@@ -36,3 +36,16 @@ alias nomnom='killall'
 alias byes='exit'
 alias cya='reboot'
 alias kthxbai='halt'
+
+alias pwned='ssh'
+
+alias hackzor='git init'
+alias rulz='git push'
+alias bringz='git pull'
+alias chicken='git add'
+alias oanward='git commit -m'
+alias ooanward='git commit -am'
+alias yolo='git commit -m "$(curl -s http://whatthecommit.com/index.txt)"'
+alias letcat='git checkout'
+alias violenz='git rebase'
+

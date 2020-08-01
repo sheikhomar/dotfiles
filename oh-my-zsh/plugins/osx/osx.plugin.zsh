@@ -1,33 +1,41 @@
-# ------------------------------------------------------------------------------
-#          FILE:  osx.plugin.zsh
-#   DESCRIPTION:  oh-my-zsh plugin file.
-#        AUTHOR:  Sorin Ionescu (sorin.ionescu@gmail.com)
-#       VERSION:  1.1.0
-# ------------------------------------------------------------------------------
+# Open the current directory in a Finder window
+alias ofd='open_command $PWD'
+
+# Show/hide hidden files in the Finder
+alias showfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+alias hidefiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+
+# Bluetooth restart
+function btrestart() {
+  sudo kextunload -b com.apple.iokit.BroadcomBluetoothHostControllerUSBTransport
+  sudo kextload -b com.apple.iokit.BroadcomBluetoothHostControllerUSBTransport
+}
+
+function _omz_osx_get_frontmost_app() {
+  osascript 2>/dev/null <<EOF
+    tell application "System Events"
+      name of first item of (every process whose frontmost is true)
+    end tell
+EOF
+}
 
 function tab() {
-  local command="cd \\\"$PWD\\\"; clear; "
+  # Must not have trailing semicolon, for iTerm compatibility
+  local command="cd \\\"$PWD\\\"; clear"
   (( $# > 0 )) && command="${command}; $*"
 
-  the_app=$(
-    osascript 2>/dev/null <<EOF
-      tell application "System Events"
-        name of first item of (every process whose frontmost is true)
-      end tell
-EOF
-  )
+  local the_app=$(_omz_osx_get_frontmost_app)
 
-  [[ "$the_app" == 'Terminal' ]] && {
-    osascript 2>/dev/null <<EOF
+  if [[ "$the_app" == 'Terminal' ]]; then
+    # Discarding stdout to quash "tab N of window id XXX" output
+    osascript >/dev/null <<EOF
       tell application "System Events"
         tell process "Terminal" to keystroke "t" using command down
-        tell application "Terminal" to do script "${command}" in front window
       end tell
+      tell application "Terminal" to do script "${command}" in front window
 EOF
-  }
-
-  [[ "$the_app" == 'iTerm' ]] && {
-    osascript 2>/dev/null <<EOF
+  elif [[ "$the_app" == 'iTerm' ]]; then
+    osascript <<EOF
       tell application "iTerm"
         set current_terminal to current terminal
         tell current_terminal
@@ -39,51 +47,87 @@ EOF
         end tell
       end tell
 EOF
-  }
+  elif [[ "$the_app" == 'iTerm2' ]]; then
+    osascript <<EOF
+      tell application "iTerm2"
+        tell current window
+          create tab with default profile
+          tell current session to write text "${command}"
+        end tell
+      end tell
+EOF
+  elif [[ "$the_app" == 'Hyper' ]]; then
+    osascript >/dev/null <<EOF
+      tell application "System Events"
+        tell process "Hyper" to keystroke "t" using command down
+      end tell
+      delay 1
+      tell application "System Events"
+        keystroke "${command}"
+        key code 36  #(presses enter)
+      end tell
+EOF
+  else
+    echo "$0: unsupported terminal app: $the_app" >&2
+    return 1
+  fi
 }
 
 function vsplit_tab() {
-  local command="cd \\\"$PWD\\\""
+  local command="cd \\\"$PWD\\\"; clear"
   (( $# > 0 )) && command="${command}; $*"
 
-  the_app=$(
-    osascript 2>/dev/null <<EOF
-      tell application "System Events"
-        name of first item of (every process whose frontmost is true)
-      end tell
-EOF
-  )
+  local the_app=$(_omz_osx_get_frontmost_app)
 
-  [[ "$the_app" == 'iTerm' ]] && {
-    osascript 2>/dev/null <<EOF
-      tell application "iTerm" to activate
-
+  if [[ "$the_app" == 'iTerm' ]]; then
+    osascript <<EOF
+      -- tell application "iTerm" to activate
       tell application "System Events"
         tell process "iTerm"
           tell menu item "Split Vertically With Current Profile" of menu "Shell" of menu bar item "Shell" of menu bar 1
             click
           end tell
         end tell
-        keystroke "${command}; clear;"
-        keystroke return
+        keystroke "${command} \n"
       end tell
 EOF
-  }
+  elif [[ "$the_app" == 'iTerm2' ]]; then
+    osascript <<EOF
+      tell application "iTerm2"
+        tell current session of first window
+          set newSession to (split vertically with same profile)
+          tell newSession
+            write text "${command}"
+            select
+          end tell
+        end tell
+      end tell
+EOF
+  elif [[ "$the_app" == 'Hyper' ]]; then
+    osascript >/dev/null <<EOF
+    tell application "System Events"
+      tell process "Hyper"
+        tell menu item "Split Vertically" of menu "Shell" of menu bar 1
+          click
+        end tell
+      end tell
+      delay 1
+      keystroke "${command} \n"
+    end tell
+EOF
+  else
+    echo "$0: unsupported terminal app: $the_app" >&2
+    return 1
+  fi
 }
 
 function split_tab() {
-  local command="cd \\\"$PWD\\\""
+  local command="cd \\\"$PWD\\\"; clear"
   (( $# > 0 )) && command="${command}; $*"
 
-  the_app=$(
-    osascript 2>/dev/null <<EOF
-      tell application "System Events"
-        name of first item of (every process whose frontmost is true)
-      end tell
-EOF
-  )
+  local the_app=$(_omz_osx_get_frontmost_app)
 
-  [[ "$the_app" == 'iTerm' ]] && {
+  if [[ "$the_app" == 'iTerm' ]]; then
     osascript 2>/dev/null <<EOF
       tell application "iTerm" to activate
 
@@ -93,17 +137,43 @@ EOF
             click
           end tell
         end tell
-        keystroke "${command}; clear;"
-        keystroke return
+        keystroke "${command} \n"
       end tell
 EOF
-  }
+  elif [[ "$the_app" == 'iTerm2' ]]; then
+    osascript <<EOF
+      tell application "iTerm2"
+        tell current session of first window
+          set newSession to (split horizontally with same profile)
+          tell newSession
+            write text "${command}"
+            select
+          end tell
+        end tell
+      end tell
+EOF
+  elif [[ "$the_app" == 'Hyper' ]]; then
+    osascript >/dev/null <<EOF
+    tell application "System Events"
+      tell process "Hyper"
+        tell menu item "Split Horizontally" of menu "Shell" of menu bar 1
+          click
+        end tell
+      end tell
+      delay 1
+      keystroke "${command} \n"
+    end tell
+EOF
+  else
+    echo "$0: unsupported terminal app: $the_app" >&2
+    return 1
+  fi
 }
 
 function pfd() {
   osascript 2>/dev/null <<EOF
     tell application "Finder"
-      return POSIX path of (target of window 1 as alias)
+      return POSIX path of (insertion location as alias)
     end tell
 EOF
 }
@@ -129,6 +199,21 @@ function pushdf() {
   pushd "$(pfd)"
 }
 
+function pxd() {
+  dirname $(osascript 2>/dev/null <<EOF
+    if application "Xcode" is running then
+      tell application "Xcode"
+        return path of active workspace document
+      end tell
+    end if
+EOF
+)
+}
+
+function cdx() {
+  cd "$(pxd)"
+}
+
 function quick-look() {
   (( $# > 0 )) && qlmanage -p $* &>/dev/null &
 }
@@ -136,24 +221,19 @@ function quick-look() {
 function man-preview() {
   man -t "$@" | open -f -a Preview
 }
-
-function trash() {
-  local trash_dir="${HOME}/.Trash"
-  local temp_ifs=$IFS
-  IFS=$'\n'
-  for item in "$@"; do
-    if [[ -e "$item" ]]; then
-      item_name="$(basename $item)"
-      if [[ -e "${trash_dir}/${item_name}" ]]; then
-        mv -f "$item" "${trash_dir}/${item_name} $(date "+%H-%M-%S")"
-      else
-        mv -f "$item" "${trash_dir}/"
-      fi
-    fi
-  done
-  IFS=$temp_ifs
-}
+compdef _man man-preview
 
 function vncviewer() {
   open vnc://$@
 }
+
+# Remove .DS_Store files recursively in a directory, default .
+function rmdsstore() {
+  find "${@:-.}" -type f -name .DS_Store -delete
+}
+
+# Music / iTunes control function
+source "${0:h:A}/music"
+
+# Spotify control function
+source "${0:h:A}/spotify"
