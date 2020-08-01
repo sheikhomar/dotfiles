@@ -3,7 +3,7 @@
 BACKUP_DIR="/tmp/dots$RANDOM"
 LOG_FILE=$BACKUP_DIR/log
 SRC_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-declare -a files=(bashrc zshrc gitconfig vimrc Xmodmap gemrc vim zsh oh-my-zsh tmux.conf)
+declare -a files=(bashrc zshrc gitconfig vimrc Xmodmap gemrc vim zsh oh-my-zsh tmux.conf p10k.zsh)
 
 echo Backing up files to $BACKUP_DIR
 mkdir $BACKUP_DIR
