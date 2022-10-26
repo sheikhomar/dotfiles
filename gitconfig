@@ -3,6 +3,8 @@
 	email = sheikhomar@users.noreply.github.com
 [push]
 	default = tracking
+[init]
+  defaultBranch = main
 [branch]
 	autosetuprebase = always
 [color]
