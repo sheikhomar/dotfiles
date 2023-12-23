@@ -19,3 +19,5 @@
 	up = pull --rebase
 	qlog = whatchanged --oneline --decorate --color
 	log = log --color=auto
+[credential]
+	helper = store
