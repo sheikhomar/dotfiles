@@ -49,8 +49,8 @@ fi
 # History settings
 export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd:cd ..:cd.."
 export HISTFILE=~/.zsh_history
-export HISTSIZE=5000
-export SAVEHIST=5000
+export HISTSIZE=999999999
+export SAVEHIST=999999999
 setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
 setopt EXTENDED_HISTORY # add timestamps to history
