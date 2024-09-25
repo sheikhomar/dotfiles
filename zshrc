@@ -34,6 +34,7 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(
   git
   pdm
+  azure-cli
 )
 
 source $ZSH/oh-my-zsh.sh
