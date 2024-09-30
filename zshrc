@@ -35,6 +35,7 @@ plugins=(
   git
   pdm
   azure-cli
+  poetry
 )
 
 source $ZSH/oh-my-zsh.sh
